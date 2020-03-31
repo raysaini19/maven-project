@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'tag_version', defaultValue: 'Newtorn-01202020', description: 'release date buildno')
+        string(name: 'tag_version', defaultValue: '$BUILD_NUMBER', description: 'release date buildno')
     }
     stages {
         stage('Declare') {
