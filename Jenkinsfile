@@ -4,6 +4,9 @@ pipeline {
         string(name: 'tag_version', defaultValue: 'networn-01022010', description: 'release date buildno')
     }
     stages {
+//        stage('Getting ready...') {
+//                git branch: "dev", credentialsId: 'your_id_on_jenkins', url: 'https://github.com/Raysaini109/maven-project.git'
+//              }
         stage('Declare') {
             steps {
                 sh 'mvn --version'
@@ -29,5 +32,22 @@ pipeline {
                 sh("git tag ${BUILD_NUMBER}")
             }
         }
+        stage('SSH transfer') {
+             script {
+              sshPublisher(
+               continueOnError: false, failOnError: true,
+               publishers: [
+                sshPublisherDesc(
+                 configName: "${env.SSH_CONFIG_NAME}",
+                 verbose: true,
+                 transfers: [
+                  sshTransfer(
+                   sourceFiles: "${cs/dis/target}/${*.zip}",
+                   removePrefix: "${CS/dis/target}",
+                   remoteDirectory: "${zip}",
+                   execCommand: "sudo sh /home/devops/deploy.sh"
+                  )
+                 ])
+               ])
     }
 }
