@@ -25,13 +25,12 @@ pipeline {
             }   
         }
         stage('Deploy') {
-            when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
-            }
-            steps {
-                sh 'make publish'
+            steps{
+            sh """
+             sh 'bundle install'
+             sh 'bundle exec rake build spec'
+             archive (includes: 'pkg/*.gem')
+            """
             }
         }
     }
