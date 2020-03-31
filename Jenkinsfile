@@ -33,9 +33,13 @@ pipeline {
             }
             steps{
                 sh """
-                git tag ${BUILD_NUMBER}
                 git config --global user.name "raysaini19"
                 git config --global user.email "109manojsaini@gmail.com"
+                
+                git tag ${BUILD_NUMBER}
+                git add .
+                git commit -m " update "
+
                 git push https://$jenkins_github@https://github.com/Raysaini109/maven-project.git
                 """
             }
