@@ -19,10 +19,5 @@ pipeline {
                 sh 'mvn -B -DskipTests package'
             }
         }
-        stage('Example') {
-            steps {
-                echo "${params.Greeting} World!"
-            }
-        }
     }
 }
