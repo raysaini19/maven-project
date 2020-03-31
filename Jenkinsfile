@@ -24,5 +24,10 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('Tagging'){
+            steps{
+                sh("git tag ${BUILD_NUMBER}")
+            }
+        }
     }
 }
