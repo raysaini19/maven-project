@@ -31,6 +31,8 @@ pipeline {
             steps{
                 sh """
                 git tag ${BUILD_NUMBER}
+                git config --global user.name "raysaini19"
+                git config --global user.email "109manojsaini@gmail.com"
                 """
             }
         }
