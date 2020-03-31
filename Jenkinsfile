@@ -30,7 +30,7 @@ pipeline {
         stage('Tagging'){
             steps{
                 sh """
-                git tag -a ${BUILD_NUMBER}
+                git tag ${BUILD_NUMBER} -a "v1.0" -m "Test Tag"
                 """
             }
         }
