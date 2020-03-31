@@ -29,8 +29,9 @@ pipeline {
         }
         stage('Tagging'){
             steps{
+                sh """
                 git tag -a ${BUILD_NUMBER}
-                
+                """
             }
         }
     }
