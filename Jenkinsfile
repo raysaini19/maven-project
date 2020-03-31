@@ -29,25 +29,9 @@ pipeline {
         }
         stage('Tagging'){
             steps{
-                sh("git tag ${BUILD_NUMBER}")
+                git tag -a ${BUILD_NUMBER}
+                
             }
         }
-        stage('SSH transfer') {
-             script {
-              sshPublisher(
-               continueOnError: false, failOnError: true,
-               publishers: [
-                sshPublisherDesc(
-                 configName: "${env.SSH_CONFIG_NAME}",
-                 verbose: true,
-                 transfers: [
-                  sshTransfer(
-                   sourceFiles: "${cs/dis/target/*.zip}",
-                   removePrefix: "${CS/dis/target}",
-                   remoteDirectory: "${zip}",
-                   execCommand: "sudo sh /home/devops/deploy.sh"
-                  )
-                 ])
-               ])
     }
 }
