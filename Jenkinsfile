@@ -42,7 +42,7 @@ pipeline {
                  verbose: true,
                  transfers: [
                   sshTransfer(
-                   sourceFiles: "${cs/dis/target}/${*.zip}",
+                   sourceFiles: "${cs/dis/target/*.zip}",
                    removePrefix: "${CS/dis/target}",
                    remoteDirectory: "${zip}",
                    execCommand: "sudo sh /home/devops/deploy.sh"
