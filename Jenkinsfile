@@ -28,6 +28,9 @@ pipeline {
             }
         }
         stage('Tagging'){
+            environment{
+                GIT_CRED = credentials('jenkins_github')
+            }
             steps{
                 sh """
                 git tag ${BUILD_NUMBER}
