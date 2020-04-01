@@ -41,7 +41,7 @@ pipeline {
                 git push origin :refs/tags/snapshot
                 git push --tags
 
-                git push https://$jenkins_github@https://github.com/Raysaini109/maven-project.git
+              //  git push https://$jenkins_github@https://github.com/Raysaini109/maven-project.git
                 """
             }
         }
