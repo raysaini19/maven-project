@@ -36,9 +36,10 @@ pipeline {
                 git config --global user.name "raysaini19"
                 git config --global user.email "109manojsaini@gmail.com"
                 
-                git tag ${BUILD_NUMBER}
-                git add .
-                git commit -m " update "
+                git tag -d snapshot || true
+                git tag -a snapshot -m \"passed CI\"
+                git push origin :refs/tags/snapshot
+                git push --tags
 
                 git push https://$jenkins_github@https://github.com/Raysaini109/maven-project.git
                 """
