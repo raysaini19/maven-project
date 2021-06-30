@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Declare') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Pre-Build') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+}
